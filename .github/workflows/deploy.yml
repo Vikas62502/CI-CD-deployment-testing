@@ -23,4 +23,4 @@ jobs:
           HOST: ${{ secrets.EC2_HOST }}
           USER: ${{ secrets.EC2_USER }}
         run: |
-          ssh -o StrictHostKeyChecking=no $USER@$HOST 'bash -s' < ./deploy.sh
+          ssh -o StrictHostKeyChecking=no $USER@$HOST 'bash /home/ubuntu/deploy.sh'
