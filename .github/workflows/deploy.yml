@@ -18,6 +18,13 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.EC2_SSH_KEY }}
 
+      - name: Copy deploy script to EC2
+        env:
+          HOST: ${{ secrets.EC2_HOST }}
+          USER: ${{ secrets.EC2_USER }}
+        run: |
+          scp -o StrictHostKeyChecking=no ./deploy.sh $USER@$HOST:/home/ubuntu/deploy.sh
+
       - name: Deploy to EC2
         env:
           HOST: ${{ secrets.EC2_HOST }}
