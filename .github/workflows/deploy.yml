@@ -25,9 +25,9 @@ jobs:
       - name: Deploy application
         run: |
           ssh Climate-mitigate 'bash -s' << 'EOF'
-          cd /path/to/your/application
+          cd /home/ubuntu/cm-deployment-testing
           # Commands to pull changes, install dependencies, and restart your service
           git pull origin main
           npm install
-          pm2 restart your-app-name  # Or replace with your service manager
+          pm2 restart deployment-testing  # Or replace with your service manager
           EOF
