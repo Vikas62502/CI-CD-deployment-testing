@@ -13,6 +13,10 @@ app.get("/health", (req, res) => {
     res.send("I am healthy");
 });
 
+app.post('/check-post', (req, res) => {
+    res.send("Post request");
+})
+
 app.post("/add-data-to-main", (req, res) => {
     res.send("Data added to main");
 });
