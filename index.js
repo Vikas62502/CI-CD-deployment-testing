@@ -20,6 +20,9 @@ app.post('/check-post', (req, res) => {
 app.post("/add-data-to-main", (req, res) => {
     res.send("Data added to main");
 });
+app.post("/add-data-to-random", (req, res) => {
+    res.send("Data added to main");
+});
 // comment added for testeng
 
 // comment added for testing
