@@ -5,17 +5,11 @@ app.get("/", (req, res) => {
     res.send("Hello World");
 });
 
-app.get("/testing", (req, res) => {
-    res.send("Hello World");
+app.post("/working-fine", (req, res) => {
+    res.send("Working Fine");
 });
 
-app.get("/health", (req, res) => {
-    res.send("I am healthy");
-});
 
-app.get('/isSujeetBadmosh', (req, res) => {
-    res.send('Yes, he is badmash');
-});
 
 app.listen(3000, () => {
     console.log("Server is running on port 3000");
