@@ -13,12 +13,6 @@ app.get("/health", (req, res) => {
     res.send("I am healthy");
 });
 
-app.post('/check-post', (req, res) => {
-    res.send("Post request");
-})
-
-// testing
-
 app.listen(3000, () => {
     console.log("Server is running on port 3000");
 }
