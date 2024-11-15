@@ -3,7 +3,7 @@ name: Deploy to EC2
 on:
   push:
     branches:
-      - main
+      - main  # or specify the branch you want to trigger deployment
 
 jobs:
   deploy:
@@ -18,16 +18,16 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.EC2_SSH_KEY }}
 
-      - name: Copy deploy script to EC2
-        env:
-          HOST: ${{ secrets.EC2_HOST }}
-          USER: ${{ secrets.EC2_USER }}
+      - name: Add SSH config for Climate-mitigate
         run: |
-          scp -o StrictHostKeyChecking=no ./deploy.sh $USER@$HOST:/home/ubuntu/deploy.sh
+          echo -e "Host Climate-mitigate\n\tHostName ec2-3-11-89-45.eu-west-2.compute.amazonaws.com\n\tIdentityFile ~/.ssh/deployment_key.pem\n\tUser ubuntu" >> ~/.ssh/config
 
-      - name: Deploy to EC2
-        env:
-          HOST: ${{ secrets.EC2_HOST }}
-          USER: ${{ secrets.EC2_USER }}
+      - name: Deploy application
         run: |
-          ssh -o StrictHostKeyChecking=no $USER@$HOST 'bash /home/ubuntu/deploy.sh'
+          ssh Climate-mitigate 'bash -s' << 'EOF'
+          cd /path/to/your/application
+          # Commands to pull changes, install dependencies, and restart your service
+          git pull origin main
+          npm install
+          pm2 restart your-app-name  # Or replace with your service manager
+          EOF
