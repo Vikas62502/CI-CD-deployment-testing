@@ -8,6 +8,9 @@ app.get("/", (req, res) => {
 app.post("/working-fine", (req, res) => {
     res.send("Working Fine");
 });
+app.post("/gain-deplyment-working-fine", (req, res) => {
+    res.send("Working Fine");
+});
 
 
 
